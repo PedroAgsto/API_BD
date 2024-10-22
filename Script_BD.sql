@@ -381,7 +381,8 @@ INSERT INTO public.exemplar VALUES (100011, 'A Fenomenologia do Espirito', 10001
 --
 
 INSERT INTO public.funcionario VALUES (202402, 'Paulo', 'Paulo@gmail.com', 'daseinlivros', 'caixa', '2024-01-01', 1500);
-
+INSERT INTO public.funcionario VALUES (202402, 'Pedro', 'Pedro@gmail.com', 'daseinpedro', 'limpeza', '2023-10-02', 1500);
+INSERT INTO public.funcionario VALUES (202402, 'Rita', 'Rita@gmail.com', 'daseinrita', 'reestoque', '2021-07-12', 1600);
 
 --
 -- TOC entry 4930 (class 0 OID 17272)
@@ -446,7 +447,11 @@ INSERT INTO public."livrosInfo" VALUES (18, 10002, 1007, 2007);
 --
 
 INSERT INTO public.usuario VALUES ('Professor', 'Andre', 'DComp@ufs.com.br', 'professor', '12345678', 0, 1, 0);
-
+INSERT INTO public.usuario VALUES ('KateBush', 'Kate', 'Kate@umemail.com.br', 'senhakate', NULL, 0, 0, 1);
+INSERT INTO public.usuario VALUES ('LauraPalmer', 'Laura', 'Laura@umemail.com.br', 'senhalaura', 20201234, 1, 0, 0);
+INSERT INTO public.usuario VALUES ('Bowie', 'David', 'David@umemail.com.br', 'senhadavid', NULL, 0, 0, 1);
+INSERT INTO public.usuario VALUES ('MNascimento', 'Milton', 'Milton@umemail.com.br', 'senhamilton', NULL, 0, 0, 1);
+INSERT INTO public.usuario VALUES ('Beatriz', 'Beatriz', 'Beatriz@ufs.com.br', 'professor', '12348765', 0, 1, 0);
 
 --
 -- TOC entry 4951 (class 0 OID 0)
