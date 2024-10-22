@@ -1,0 +1,29 @@
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa de Exemplares</title>
+</head>
+<body>
+    <h1>Faça aqui a sua pesquisa</h1>
+
+    <form method="GET" action="">
+        <input type="text" name="query" placeholder="Pesquisar pelo ID do livro ou do exemplar">
+        <button type="submit">Buscar</button>
+    </form>
+
+    {% if query %}
+        {% if exemplares %}
+            <ul>
+                {% for exemplar in exemplares %}
+                    <li>{{ exemplar.idexemplar }} - {{ exemplar.idlivro }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Nenhum exemplar encontrado.</p>
+        {% endif %}
+    {% endif %}
+
+    <a href="{% url 'home' %}">Voltar para Home</a>
+</body>
+</html>

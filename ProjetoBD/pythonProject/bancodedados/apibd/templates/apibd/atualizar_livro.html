@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualizar Livro</title>
+</head>
+<body>
+    <h1>Atualizar Livro: {{ livro.titulo }}</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="titulo">Título:</label>
+        <input type="text" name="titulo" id="titulo" value="{{ livro.titulo }}" required>
+
+        <label for="isbn">ISBN:</label>
+        <input type="text" name="isbn" id="isbn" value="{{ livro.isbn }}" required>
+
+        <label for="edicao">Edição:</label>
+        <input type="text" name="edicao" id="edicao" value="{{ livro.edicao }}" required>
+
+        <label for="editora">Código da Editora:</label>
+        <input type="text" name="editora" id="editora" value="{{ livro.id_editora }}" required>
+
+        <button type="submit">Salvar</button>
+    </form>
+
+    <a href="{% url 'home' %}">Voltar para a Home</a>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa de Livros</title>
+</head>
+<body>
+    <h1>Faça aqui a sua pesquisa</h1>
+    <h2>Para exibir todos os valores, apenas digite "1" na barra de pesquisa</h2>
+
+    <form method="GET" action="">
+        <input type="text" name="query" placeholder="Pesquisar pelo titulo ou ID">
+        <button type="submit">Buscar</button>
+    </form>
+
+    {% if query %}
+        {% if livros %}
+            <ul>
+                {% for livro in livros %}
+                    <li>Título: {{ livro.titulo }} - - - - CódigoID: {{ livro.idlivro }} - - - - isbn: {{ livro.isbn }} - - - - edição número: {{ livro.edicao }} - - - - editora: {{ livro.editora }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Nenhum livro encontrado.</p>
+        {% endif %}
+    {% endif %}
+
+    <a href="{% url 'home' %}">Voltar para Home</a>
+</body>
+</html>
