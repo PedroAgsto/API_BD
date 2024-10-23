@@ -7,10 +7,12 @@
 <body>
     <h1>Bem-vindo à Página Inicial da Livros Dasein</h1>
 
-    <!-- Link para a página de seleção de livros -->
-    <a href="{% url 'selecionar_livro' %}">
-        <button>Selecione um Livro para Atualizar</button>
-    </a>
+    <!-- Link para a página de modificar livros -->
+    <form action="{% url 'selecionar_livro' %}" method="get">
+        <button type="submit">Modificar a Tabela Livro</button>
+    </form>
+</body>
+</html>
 
     <!-- link para a página de pesquisa de livros -->
     <form action="{% url 'livros_pesquisar' %}" method="get">
@@ -19,10 +21,24 @@
 </body>
 </html>
 
+
+    <!-- link para a página de modificar exemplares -->
+    <form action="{% url 'selecionar_exemplar' %}" method="get">
+        <button type="submit">Modificar a Tabela Exemplar</button>
+    </form>
+</body>
+</html>
+
     <!-- link para a página de pesquisa de exemplares -->
     <form action="{% url 'exemplares_pesquisar' %}" method="get">
         <button type="submit">Ir para Pesquisa de Exemplares</button>
     </form>
+</body>
+</html>
 
+    <!-- link para a página de pesquisa na tabela LivrosInfo -->
+    <form action="{% url 'listar_livrosinfo' %}" method="get">
+        <button type="submit">Ir para a tabela LivrosInfo</button>
+    </form>
 </body>
 </html>

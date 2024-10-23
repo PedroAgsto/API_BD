@@ -1,0 +1,25 @@
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selecionar Exemplar</title>
+</head>
+<body>
+    <h1>Selecionar um Exemplar para Modificação</h1>
+
+    <ul>
+        {% for exemplar in exemplares %}
+            <li>
+                - <a href="{% url 'atualizar_exemplar' exemplar.idexemplar %}">Modificar</a>
+                {{ exemplar.tituloexemplar }}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'inserir_exemplar' %}">Inserir novo Exemplar</a>
+
+    <a href="{% url 'remover_exemplar' %}">Remover Exemplar</a>
+
+    <a href="{% url 'home' %}">Voltar para a Home</a>
+</body>
+</html>

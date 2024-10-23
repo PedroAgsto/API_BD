@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Livros Info</title>
+</head>
+<body>
+    <h1>Lista de Livros Info</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID Info</th>
+                <th>Título do Livro</th>
+                <th>Nome do Autor</th>
+                <th>Categoria</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for info in livrosinfo %}
+                <tr>
+                    <td>{{ info.idinfo }}</td>
+                    <td>{{ info.idlivro.titulo }}</td>
+                    <td>{{ info.idautor.autor }}</td>
+                    <td>{{ info.idcategoria.categoria }}</td>
+                    <td>
+                        <a href="{% url 'atualizar_livrosinfo' info.idinfo %}">Atualizar</a>
+                        |
+                        <a href="{% url 'remover_livrosinfo' info.idinfo %}">Remover</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'inserir_livrosinfo' %}">Inserir na tabela</a>
+</body>
+</html>
+
+    <a href="{% url 'home' %}">Voltar para a página inicial</a>
+</body>
+</html>

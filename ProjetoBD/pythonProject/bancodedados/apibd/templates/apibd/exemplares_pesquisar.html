@@ -6,9 +6,10 @@
 </head>
 <body>
     <h1>Faça aqui a sua pesquisa</h1>
+    <h2>Quanto ao compo "Está Disponível?", o valor 0 indica que não está, e 1 que está disponível</h2>
 
     <form method="GET" action="">
-        <input type="text" name="query" placeholder="Pesquisar pelo ID do livro ou do exemplar">
+        <input type="text" name="query" placeholder="Pesquisar pelo titulo ou id do exemplar">
         <button type="submit">Buscar</button>
     </form>
 
@@ -16,7 +17,7 @@
         {% if exemplares %}
             <ul>
                 {% for exemplar in exemplares %}
-                    <li>{{ exemplar.idexemplar }} - {{ exemplar.idlivro }}</li>
+                    <li>Título: {{ exemplar.tituloexemplar }} - - - - ID(Exemplar): {{ exemplar.idexemplar }} - - - - ID(Livro): {{ exemplar.idlivro }} - - - - Quantidades disponíveis: {{ exemplar.quantidade }} - - - - Está Disponível?: {{ exemplar.disponivel }}</li>
                 {% endfor %}
             </ul>
         {% else %}

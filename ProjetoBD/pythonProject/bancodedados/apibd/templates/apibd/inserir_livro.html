@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Livro</title>
+</head>
+<body>
+    <h1>Criar Livro</h1>
+
+    {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+
+    {% if mensagem %}
+        <p style="color: green;">{{ mensagem }}</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label for="idlivro">ID:</label><br>
+        <input type="number" id="idlivro" name="idlivro" required><br><br>
+
+        <label for="titulo">Título:</label><br>
+        <input type="text" id="titulo" name="titulo" required><br><br>
+
+        <label for="isbn">ISBN:</label><br>
+        <input type="text" id="isbn" name="isbn" required><br><br>
+
+        <label for="edicao">Edição:</label><br>
+        <input type="number" id="edicao" name="edicao" required><br><br>
+
+        <label for="ideditora">Editora:</label><br>
+        <select id="ideditora" name="ideditora" required>
+            {% for editora in editoras %}
+                <option value="{{ editora.ideditora }}">{{ editora.nome }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <input type="submit" value="Criar Livro">
+    </form>
+    <a href="{% url 'home' %}">Voltar para Home</a>
+</body>
+</html>

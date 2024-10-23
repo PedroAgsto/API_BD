@@ -1,12 +1,17 @@
 from django import forms
-from .models import Livro
+from .models import Livrosinfo, Livro, Autores, Categorias
 
-class LivroForm(forms.ModelForm):
+class LivrosinfoForm(forms.ModelForm):
     class Meta:
-        model = Livro
-        fields = ["idlivro",
-                  "titulo",
-                  "isbn",
-                  "edicao",
-                  "editora"
-        ]
+        model = Livrosinfo
+        fields = ['idlivro', 'idautor', 'idcategoria']  # Campos para edição
+        labels = {'idlivro': 'Livro', 'idautor': 'Autor','idcategoria': 'Categoria'}
+        widgets = {'idlivro': forms.Select(),
+                   'idautor': forms.Select(),
+                   'idcategoria': forms.Select()}
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['idlivro'].queryset = Livro.objects.all()
+        self.fields['idautor'].queryset = Autores.objects.all()
+        self.fields['idcategoria'].queryset = Categorias.objects.all()

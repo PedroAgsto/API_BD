@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remover Livro</title>
+</head>
+<body>
+    <h1>Escolha qual livro remover, não é obrigatório preencher todos os campos</h1>
+
+    {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label for="idlivro">ID do Livro:</label><br>
+        <input type="number" id="idlivro" name="idlivro"><br><br>
+
+        <label for="titulo">Título do Livro:</label><br>
+        <input type="text" id="titulo" name="titulo"><br><br>
+
+        <input type="submit" value="Remover Livro">
+    </form>
+    <a href="{% url 'home' %}">Voltar para Home</a>
+</body>
+</html>

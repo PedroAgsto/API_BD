@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remover Exemplar</title>
+</head>
+<body>
+    <h1>Remover Exemplar</h1>
+
+    {% if mensagem %}
+        <p style="color: green;">{{ mensagem }}</p>
+    {% else %}
+        <form method="POST">
+            {% csrf_token %}
+
+            <label for="idexemplar">Selecione o Exemplar para remover:</label><br>
+            <select id="idexemplar" name="idexemplar" required>
+                <option value="">Selecione um exemplar</option>
+                {% for exemplar in exemplares %}
+                    <option value="{{ exemplar.idexemplar }}">{{ exemplar.tituloexemplar }} (ID: {{ exemplar.idexemplar }})</option>
+                {% endfor %}
+            </select><br><br>
+
+            <input type="submit" value="Remover Exemplar">
+        </form>
+    {% endif %}
+    <a href="{% url 'home' %}">Voltar para Home</a>
+</body>
+</html>

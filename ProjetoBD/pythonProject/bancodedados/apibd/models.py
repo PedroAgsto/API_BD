@@ -7,7 +7,6 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
-
 class Autores(models.Model):
     idautor = models.IntegerField(db_column='idAutor', primary_key=True)  # Field name made lowercase.
     autor = models.CharField(max_length=45)
@@ -65,13 +64,18 @@ class Emprestimo(models.Model):
 class Exemplar(models.Model):
     idexemplar = models.IntegerField(db_column='idExemplar', primary_key=True)  # Field name made lowercase.
     tituloexemplar = models.CharField(max_length=100)
-    idlivro = models.ForeignKey('Livro', models.DO_NOTHING, db_column='idlivro')
+    idlivro = models.ForeignKey('Livro', on_delete=models.CASCADE, db_column='idlivro')
     quantidade = models.SmallIntegerField()
     disponivel = models.SmallIntegerField()
 
     class Meta:
         #managed = False
         db_table = 'exemplar'
+
+    def save(self, *args, **kwargs):
+        # Atualiza o campo 'disponivel' baseado na 'quantidade'
+        self.disponivel = 1 if self.quantidade > 0 else 0
+        super().save(*args, **kwargs)
 
 
 class Funcionario(models.Model):
@@ -93,7 +97,7 @@ class Livro(models.Model):
     titulo = models.CharField(max_length=100)
     isbn = models.CharField(max_length=17)
     edicao = models.SmallIntegerField()
-    id_editora = models.IntegerField()
+    ideditora = models.IntegerField(db_column='id_editora')
 
     class Meta:
         #managed = False
@@ -102,15 +106,14 @@ class Livro(models.Model):
 
 class Livrosinfo(models.Model):
     idinfo = models.AutoField(db_column='idInfo', primary_key=True)  # Field name made lowercase.
-    idlivro = models.ForeignKey(Livro, models.DO_NOTHING, db_column='idlivro')
-    idcategoria = models.ForeignKey(Categorias, models.DO_NOTHING, db_column='idCategoria')  # Field name made lowercase.
-    idautor = models.ForeignKey(Autores, models.DO_NOTHING, db_column='idAutor')  # Field name made lowercase.
+    idlivro = models.ForeignKey(Livro, on_delete=models.CASCADE, db_column='idlivro')
+    idcategoria = models.ForeignKey(Categorias, on_delete=models.CASCADE, db_column='idCategoria')  # Field name made lowercase.
+    idautor = models.ForeignKey(Autores, on_delete=models.CASCADE, db_column='idAutor')  # Field name made lowercase.
 
     class Meta:
         #managed = False
         db_table = 'livrosInfo'
         unique_together = (('idlivro', 'idcategoria', 'idautor'),)
-
 
 class Multa(models.Model):
     idmulta = models.IntegerField(db_column='idMulta', primary_key=True)  # Field name made lowercase.

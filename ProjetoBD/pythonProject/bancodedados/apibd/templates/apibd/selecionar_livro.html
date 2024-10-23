@@ -1,5 +1,3 @@
-<!-- templates/selecionar_livro.html -->
-<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -7,16 +5,24 @@
     <title>Selecionar Livro</title>
 </head>
 <body>
-    <h1>Selecionar Livro para Modificação</h1>
+    <h1>Selecione o Livro para Modificação</h1>
 
     <ul>
         {% for livro in livros %}
             <li>
-                {{ livro.titulo }}
                 - <a href="{% url 'atualizar_livro' livro.idlivro %}">Modificar</a>
+                {{ livro.titulo }}
             </li>
         {% endfor %}
     </ul>
+
+    <a href="{% url 'inserir_livro' %}">Inserir novo Livro</a>
+
+    <a>-</a>
+
+    <a href="{% url 'remover_livro' %}">Remover Livro</a>
+
+    <a>-</a>
 
     <a href="{% url 'home' %}">Voltar para a Home</a>
 </body>

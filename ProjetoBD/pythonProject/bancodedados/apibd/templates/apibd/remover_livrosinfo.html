@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remover Livro Info</title>
+</head>
+<body>
+    <h1>Remover Linha</h1>
+
+    <p>Você tem certeza que deseja remover as informações do livro:</p>
+    <p><strong>ID:</strong> {{ info.idinfo }}</p>
+    <p><strong>Título do Livro:</strong> {{ info.idlivro.titulo }}</p>
+    <p><strong>Nome do Autor:</strong> {{ info.idautor.autor }}</p>
+    <p><strong>Categoria:</strong> {{ info.idcategoria.categoria }}</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Confirmar Remoção">
+    </form>
+
+    <a href="{% url 'listar_livrosinfo' %}">Cancelar</a>
+</body>
+</html>

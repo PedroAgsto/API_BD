@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualizar Exemplar</title>
+</head>
+<body>
+    <h1>Atualizar Exemplar</h1>
+
+    {% if mensagem %}
+        <p style="color: green;">{{ mensagem }}</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label for="idexemplar">ID do Exemplar:</label><br>
+        <input type="number" id="idexemplar" name="idexemplar" value="{{ exemplar.idexemplar }}" required><br><br>
+
+        <label for="tituloexemplar">Título do Exemplar:</label><br>
+        <input type="text" id="tituloexemplar" name="tituloexemplar" value="{{ exemplar.tituloexemplar }}" required><br><br>
+
+        <label for="idlivro">ID do Livro:</label><br>
+        <select id="idlivro" name="idlivro" required>
+            <option value="">Selecione um livro</option>
+            {% for livro in livros %}
+                <option value="{{ livro.idlivro }}" {% if livro.idlivro == exemplar.idlivro.idlivro %}selected{% endif %}>
+                    {{ livro.titulo }} (ID: {{ livro.idlivro }})
+                </option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="quantidade">Quantidade:</label><br>
+        <input type="number" id="quantidade" name="quantidade" value="{{ exemplar.quantidade }}" required><br><br>
+
+        <input type="submit" value="Atualizar Exemplar">
+    </form>
+    <a href="{% url 'home' %}">Voltar para Home</a>
+</body>
+</html>
