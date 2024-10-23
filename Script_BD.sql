@@ -288,24 +288,6 @@ ALTER TABLE ONLY public."livrosInfo" ALTER COLUMN "idInfo" SET DEFAULT nextval('
 -- Data for Name: autores; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-CREATE OR REPLACE FUNCTION atualizar_disponivel()
-RETURNS TRIGGER AS $$
-BEGIN
-    IF NEW.quantidade = 0 THEN
-        NEW.disponivel := 0;
-    ELSE
-        NEW.disponivel := 1;
-    END IF;
-    
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER trigger_atualizar_disponivel
-BEFORE INSERT OR UPDATE ON exemplar
-FOR EACH ROW
-EXECUTE FUNCTION atualizar_disponivel();
-
 INSERT INTO public.autores VALUES (2001, 'Hegel');
 INSERT INTO public.autores VALUES (2002, 'Heidegger');
 INSERT INTO public.autores VALUES (2003, 'Kant');
@@ -314,7 +296,7 @@ INSERT INTO public.autores VALUES (2005, 'Wittgenstein');
 INSERT INTO public.autores VALUES (2006, 'Mike Featherstone');
 INSERT INTO public.autores VALUES (2007, 'Roger Burrows');
 
-
+INSERT INTO public.usuario VALUES
 --
 -- TOC entry 4934 (class 0 OID 17366)
 -- Dependencies: 221
@@ -380,9 +362,10 @@ INSERT INTO public.exemplar VALUES (100011, 'A Fenomenologia do Espirito', 10001
 -- Data for Name: funcionario; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.funcionario VALUES (202402, 'Paulo', 'Paulo@gmail.com', 'daseinlivros', 'caixa', '2024-01-01', 1500);
+INSERT INTO public.funcionario VALUES (202402, 'Paulo', 'Paulo@gmail.com', 'daseinpaulo', 'caixa', '2024-01-01', 1500);
 INSERT INTO public.funcionario VALUES (202402, 'Pedro', 'Pedro@gmail.com', 'daseinpedro', 'limpeza', '2023-10-02', 1500);
 INSERT INTO public.funcionario VALUES (202402, 'Rita', 'Rita@gmail.com', 'daseinrita', 'reestoque', '2021-07-12', 1600);
+
 
 --
 -- TOC entry 4930 (class 0 OID 17272)
@@ -701,6 +684,25 @@ ALTER TABLE ONLY public."livrosInfo"
 
 ALTER TABLE ONLY public.exemplar
     ADD CONSTRAINT fk_livroexemplar FOREIGN KEY (idlivro) REFERENCES public.livro(idlivro) ON UPDATE CASCADE ON DELETE CASCADE;
+	
+
+CREATE OR REPLACE FUNCTION atualizar_disponivel()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.quantidade = 0 THEN
+        NEW.disponivel := 0;
+    ELSE
+        NEW.disponivel := 1;
+    END IF;
+    
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_atualizar_disponivel
+BEFORE INSERT OR UPDATE ON exemplar
+FOR EACH ROW
+EXECUTE FUNCTION atualizar_disponivel();
 
 
 -- Completed on 2024-10-22 11:54:12
